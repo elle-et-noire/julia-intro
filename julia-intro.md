@@ -113,13 +113,16 @@ Dict(i => i ^ 3 for i = 1:10)
 
 ---
 # +α
-* [i^3 for i=1:10] の代わりに [i for i=1:10].^3 としても同じ
+- [i^3 for i=1:10] の代わりに [i for i=1:10].^3 としても同じ
 
 ---
 # グラフをプロット
-* "]" でパッケージモードに移って "add Plots" で Plots パッケージをインストール（数分かかる）
+- "]" でパッケージモードに移って "add Plots" で Plots パッケージをインストール（数分かかる）
+
+---
+# 行列演算
 
 ---
 # 参考文献
-* [Julia言語プログラミング入門](http://itref.fc2web.com/lang/julia/)
-* [REPL (julia コマンド) の使い方](http://nalab.mind.meiji.ac.jp/~mk/labo/text/julia-memo/node6.html)
+- [Julia言語プログラミング入門](http://itref.fc2web.com/lang/julia/)
+- [REPL (julia コマンド) の使い方](http://nalab.mind.meiji.ac.jp/~mk/labo/text/julia-memo/node6.html)
