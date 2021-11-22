@@ -12,20 +12,20 @@ marp: true
 ---
 # インストール
 ### 直接
-* https://julialang.org/ からダウンロード、インストール
-* インストール場所はどこでもOK、パスを通そう
-* "julia" で REPL（対話環境）開始　　<span style="color: gray">*Read-Eval-Print Loop の略らしい*</span>
+- https://julialang.org/ からダウンロード、インストール
+- インストール場所はどこでもOK、パスを通そう
+- "julia" で REPL（対話環境）開始　　<span style="color: gray">*Read-Eval-Print Loop の略らしい*</span>
 
 ### Jupyter でも使いたい人（参考：[Jupyter NotebookeでJuliaを使ってみた](https://note.com/char_mi/n/nf8fc1b83591d)）
-* [conda コマンドからjuliaをインストールする方法](https://qiita.com/MTNakata/items/54b8c0fc49df4d026eef)もあるらしい（インストールしてしまえば上と同じ状況のはず）
-* "]" でパッケージモードに移って "add IJulia"
-* Backspace で julia モードに戻って "using IJulia; notebook()" で起動
+- [conda コマンドからjuliaをインストールする方法](https://qiita.com/MTNakata/items/54b8c0fc49df4d026eef)もあるらしい（インストールしてしまえば上と同じ状況のはず）
+- "]" でパッケージモードに移って "add IJulia"
+- Backspace で julia モードに戻って "using IJulia; notebook()" で起動
 
 ---
 # REPL の使い方
-* "exit()" か Ctrl+D で終了
-* "]" でパッケージモード
-* "?" でヘルプモード
+- "exit()" か Ctrl+D で終了
+- "]" でパッケージモード
+- "?" でヘルプモード
 * BackSpace で Julia モードに戻る
 * パッケージの追加：
   - (パッケージモード) add パッケージ名
