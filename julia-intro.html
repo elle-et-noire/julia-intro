@@ -13,7 +13,14 @@
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-footer="Julia 入門" data-marpit-pagination="2" data-marpit-pagination-total="15" style="--paginate:true;--footer:Julia 入門;">
 <h1>Julia とは</h1>
-<p><a href="https://www.geidai.ac.jp/~marui/julialang/why_we_created_julia/index.html">なぜ僕らはJuliaを作ったか</a></p>
+<p>参考：<a href="https://julialang.org/">Julia in a Nutshell</a>, <a href="https://www.geidai.ac.jp/~marui/julialang/why_we_created_julia/index.html">なぜ僕らはJuliaを作ったか</a></p>
+<h3>速い</h3>
+<p>LLVM を利用してネイティブコードを生成する（らしい）</p>
+<h3>簡単に書ける</h3>
+<p>動的型付けのおかげで気軽に書ける。対話環境も充実。</p>
+<h3>いろいろな構成に対応</h3>
+<p>オブジェクト指向言語や関数型言語の書き方ができる</p>
+<h3>そして<a href="https://github.com/JuliaLang/julia">オープンソース</a></h3>
 <footer>Julia 入門</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-footer="Julia 入門" data-marpit-pagination="3" data-marpit-pagination-total="15" style="--paginate:true;--footer:Julia 入門;">
@@ -22,48 +29,50 @@
 <ul>
 <li><a href="https://julialang.org/">https://julialang.org/</a> からダウンロード、インストール</li>
 <li>インストール場所はどこでもOK、パスを通そう</li>
-<li>&quot;julia&quot; で REPL（対話環境）開始　　&lt;span style="color: gray"&gt;<em>Read-Eval-Print Loop の略らしい</em>&lt;/span&gt;</li>
+<li><code>julia</code> で REPL（対話環境）開始　　</li>
 </ul>
 <h3>Jupyter でも使いたい人（参考：<a href="https://note.com/char_mi/n/nf8fc1b83591d">Jupyter NotebookeでJuliaを使ってみた</a>）</h3>
 <ul>
-<li><a href="https://qiita.com/MTNakata/items/54b8c0fc49df4d026eef">conda コマンドからjuliaをインストールする方法</a>もあるらしい（インストールしてしまえば上と同じ状況のはず）</li>
-<li>&quot;]&quot; でパッケージモードに移って &quot;add IJulia&quot;</li>
-<li>Backspace で julia モードに戻って &quot;using IJulia; notebook()&quot; で起動</li>
+<li><a href="https://qiita.com/MTNakata/items/54b8c0fc49df4d026eef"><code>conda</code> コマンドから julia をインストールする方法</a>もあるらしい（インストールしてしまえば「直接」と同じ状況のはず）</li>
+<li>] キーでパッケージモードに移って <code>add IJulia</code></li>
+<li>Backspace で julia モードに戻って <code>using IJulia; notebook()</code> で起動</li>
 </ul>
 <footer>Julia 入門</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-footer="Julia 入門" data-marpit-pagination="4" data-marpit-pagination-total="15" style="--paginate:true;--footer:Julia 入門;">
 <h1>REPL の使い方</h1>
 <ul>
-<li>&quot;exit()&quot; か Ctrl+D で終了</li>
-<li>&quot;]&quot; で <strong>パッケージモード</strong></li>
-<li>&quot;?&quot; で <strong>ヘルプモード</strong></li>
-<li>BackSpace で Julia モードに戻る</li>
+<li><code>exit()</code> か Ctrl+D で終了</li>
+<li>] で <strong>パッケージモード</strong></li>
+<li>? で <strong>ヘルプモード</strong></li>
+<li>BackSpace で <strong>julia モード</strong> に戻る</li>
 <li>パッケージの追加：
 <ul>
-<li>(パッケージモード) add パッケージ名</li>
-<li>(Julia モード) using Pkg &lt;span style="color:gray"&gt;(import Pkg でもいい)&lt;/span&gt;をした上で Pkg.add(&quot;パッケージ名&quot;)</li>
+<li>(パッケージモード) <code>add パッケージ名</code></li>
+<li>(julia モード) <code>using Pkg; Pkg.add(&quot;パッケージ名&quot;)</code> (import でも同じ)</li>
 </ul>
 </li>
-<li>インストールしたパッケージの確認：Pkg.installed()</li>
-<li>パッケージのアップデート：Pkg.update()</li>
+<li>インストールしたパッケージの確認：<code>Pkg.installed()</code></li>
+<li>パッケージのアップデート：<code>Pkg.update()</code></li>
 </ul>
 <footer>Julia 入門</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-footer="Julia 入門" data-marpit-pagination="5" data-marpit-pagination-total="15" style="--paginate:true;--footer:Julia 入門;">
 <h1>REPL を使いこなそう</h1>
 <ul>
-<li>起動コマンドを julia -q とするとバナー（julia のアスキーアート）が表示されない</li>
-<li><strong>Tab 変換</strong>：&quot;\alpha&quot;+Tab, &quot;\Alpha&quot;+Tab などと入力して α, Α などに置換される（π 以外はだいたい変数用）（TeX 記号は結構対応している）</li>
+<li>起動コマンドを <code>julia -q</code> とすると julia のアスキーアートが表示されない</li>
+<li><strong>Tab 変換</strong>：<code>\alpha</code>+Tab, <code>\Alpha</code>+Tab などと入力して <code>α</code>, <code>Α</code> などに置換される（<code>π</code> 以外はだいたい変数用）（TeX 記号は結構対応している）</li>
 <li>&lt;span style="color:gray"&gt;余談：LaTeX では \Alpha コマンドは用意されておらずアルファベットのAで代用せざるを得ないが Unicode では区別される。cf.<a href="https://ja.wikipedia.org/wiki/Unicode%E4%B8%80%E8%A6%A7_0000-0FFF">Unicode一覧 0000-0FFF</a>&lt;/span&gt;</li>
 <li>ヘルプモードで記号を入力すると TeX での打ち方、演算子の場合は用例も分かる</li>
+<li>定数 <code>π</code>, <code>ℯ</code> が用意されている(<code>\pi</code>, <code>\euler</code>+Tab)（cf. Base.Mathconstants）</li>
+<li>円周率は <code>pi</code> でも同じ扱い</li>
 </ul>
 <footer>Julia 入門</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-footer="Julia 入門" data-marpit-pagination="6" data-marpit-pagination-total="15" style="--paginate:true;--footer:Julia 入門;">
 <h1>REPL as 電卓</h1>
 <ul>
-<li>算術、論理、比較、ビット演算子は一般的なもの（python とか）とほぼ同じ</li>
+<li>算術、論理、比較、ビット演算子は下表以外は python とほぼ同じ</li>
 </ul>
 <table>
 <thead>
@@ -78,66 +87,70 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">^</td>
+<td style="text-align:center"><code>^</code></td>
 <td style="text-align:center">累乗</td>
 <td style="text-align:center"></td>
-<td style="text-align:center">≠</td>
-<td style="text-align:center">不等(!=)</td>
-<td style="text-align:center">コピペ(\neqも=\notもエラー)</td>
+<td style="text-align:center"><code>≠</code></td>
+<td style="text-align:center">不等(<code>!=</code>)</td>
+<td style="text-align:center">コピペ</td>
 </tr>
 <tr>
-<td style="text-align:center">÷</td>
+<td style="text-align:center"><code>÷</code></td>
 <td style="text-align:center">整数除算</td>
-<td style="text-align:center">&quot;\div&quot;+Tab</td>
-<td style="text-align:center">≤</td>
-<td style="text-align:center">小なり(&lt;=)</td>
-<td style="text-align:center">&quot;\le&quot;+Tab</td>
+<td style="text-align:center"><code>\div</code>+Tab</td>
+<td style="text-align:center"><code>≤</code></td>
+<td style="text-align:center">小なり(<code>&lt;=</code>)</td>
+<td style="text-align:center"><code>\le</code>+Tab</td>
 </tr>
 <tr>
-<td style="text-align:center">⊻</td>
+<td style="text-align:center"><code>⊻</code></td>
 <td style="text-align:center">XOR</td>
-<td style="text-align:center">&quot;\xor&quot;+Tab</td>
-<td style="text-align:center">≥</td>
-<td style="text-align:center">大なり(&gt;=)</td>
-<td style="text-align:center">&quot;\ge&quot;+Tab</td>
+<td style="text-align:center"><code>\xor</code>+Tab</td>
+<td style="text-align:center"><code>≥</code></td>
+<td style="text-align:center">大なり(<code>&gt;=</code>)</td>
+<td style="text-align:center"><code>\ge</code>+Tab</td>
 </tr>
 <tr>
-<td style="text-align:center">//</td>
+<td style="text-align:center"><code>//</code></td>
 <td style="text-align:center">分数</td>
 <td style="text-align:center"></td>
-<td style="text-align:center">≢</td>
-<td style="text-align:center">不等(!==)</td>
-<td style="text-align:center">&quot;\nequiv&quot;+Tab</td>
+<td style="text-align:center"><code>≢ </code></td>
+<td style="text-align:center">不等(<code>!==</code>)</td>
+<td style="text-align:center"><code>\nequiv</code>+Tab</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li>定数として &quot;π&quot;&quot;ℯ&quot; が用意されている(\pi, \euler)（cf. Base.Mathconstants）</li>
-<li><strong>数値リテラル係数</strong>：係数が数値なら掛け算の '*' を略せる。x=1; √2^2x^2+(x-1)x</li>
+<li><code>≠</code> は <code>\neq</code> が用意されておらず、ヘルプモードが示す <code>=\not</code> もエラー</li>
+<li><strong>数値リテラル係数</strong>：係数が数値なら掛け算の '*' を略せる。<code>x=1; √2^2x^2+(x-1)x</code></li>
 </ul>
 <footer>Julia 入門</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-footer="Julia 入門" data-marpit-pagination="7" data-marpit-pagination-total="15" style="--paginate:true;--footer:Julia 入門;">
+<h1>いろいろ試すために</h1>
+<ul>
+<li>コメントアウトは <code>#</code>。範囲コメントアウトは <code>#=</code> と <code>=#</code>。</li>
+<li><strong><code>println()</code></strong> でコンソール出力</li>
+</ul>
 <h1>データ型</h1>
 <ul>
-<li><strong>typeof(1)</strong> などとしてデータ型を確認できる</li>
-<li>1.0, 1 // 7, π, 2.0im, true, 'a', '㌕', &quot;ABC&quot; の型を確認してみよう</li>
-<li><strong>型変換関数</strong> はデータ型と同じ名前。Float64(pi * 2), BigFloat(ℯ)</li>
-<li>zero(x), one(x) などとすると x と同じ型の 0, 1 が得られる</li>
+<li><strong><code>typeof(1)</code></strong> などとしてデータ型を確認できる</li>
+<li><code>1.0</code>, <code>1 // 7</code>, <code>π</code>, <code>2.0im</code>, <code>true</code>, <code>'a'</code>, <code>'㌕'</code>, <code>&quot;ABC&quot;</code> の型を確認してみよう</li>
+<li><strong>型変換関数</strong> はデータ型と同じ名前。<code>Float64(pi * 2)</code>, <code>BigFloat(ℯ)</code></li>
+<li><code>zero(x)</code>, <code>one(x)</code> などとすると <code>x</code> と同じ型の <code>0</code>, <code>1</code> が得られる</li>
 </ul>
 <footer>Julia 入門</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-footer="Julia 入門" data-marpit-pagination="8" data-marpit-pagination-total="15" style="--paginate:true;--footer:Julia 入門;">
-<p><strong>println()</strong> でコンソール出力</p>
 <h1>文字列・配列</h1>
 <ul>
 <li>String は Char の配列</li>
-<li><strong>アクセス</strong>：最初の要素は [1] か [begin], 最後の要素は [end], 半分の要素は[end÷2]</li>
-<li><strong>配列のスライス</strong>：&quot;hello&quot;[2:4] とすると &quot;ell&quot; が切り出せる</li>
-<li><strong>文字列の結合</strong>：string(&quot;Java&quot;,&quot;script&quot;) とするか &quot;インド&quot; * &quot;ネシア&quot; とする<br />
-string を使う方法なら文字列以外も文字列として結合できる</li>
-<li><strong>文字列の置換</strong>：replace(&quot;Word to vec&quot;, &quot; to &quot; =&gt; 2)</li>
-<li><strong>配列の長さ</strong>：length(&quot;four&quot;)</li>
+<li><strong>アクセス</strong>：先頭 <code>[1]</code>,<code>[begin]</code>, 末尾 <code>[end]</code>, 真ん中（切り捨て）<code>[end÷2]</code></li>
+<li><strong>配列のスライス</strong>：<code>&quot;hello&quot;[2:4]</code> とすると <code>&quot;ell&quot;</code> が切り出せる</li>
+<li><strong>文字列の結合</strong>：<code>string(&quot;Java&quot;,&quot;script&quot;)</code> とするか <code>&quot;インド&quot; * &quot;ネシア&quot;</code> とする<br />
+<code>string</code> を使う方法なら文字列以外も文字列として結合できる</li>
+<li><strong>文字列の置換</strong>：<code>replace(&quot;Word to vec&quot;, &quot; to &quot; =&gt; 2)</code></li>
+<li><strong>配列の長さ</strong>：<code>length(&quot;four&quot;)</code></li>
 </ul>
 <footer>Julia 入門</footer>
 </section>
@@ -176,7 +189,7 @@ string を使う方法なら文字列以外も文字列として結合できる<
 
 println(add(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,-<span class="hljs-number">6</span>,<span class="hljs-number">100</span>,<span class="hljs-number">200</span>)) <span class="hljs-comment"># 115</span>
 </span></span></foreignObject></svg></code></pre>
-<p>julia 上では end を書くまでいくらでも改行できる。前述の end とは異なる使い方。</p>
+<p>REPL上では <code>end</code> を書くまで改行できる。末尾参照の <code>end</code> とは異なる使い方。</p>
 <footer>Julia 入門</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-footer="Julia 入門" data-marpit-pagination="11" data-marpit-pagination-total="15" style="--paginate:true;--footer:Julia 入門;">
@@ -196,29 +209,29 @@ println(add(<span class="hljs-number">1</span>,<span class="hljs-number">2</span
 <footer>Julia 入門</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-footer="Julia 入門" data-marpit-pagination="12" data-marpit-pagination-total="15" style="--paginate:true;--footer:Julia 入門;">
-<h1>+α</h1>
+<h1>少し発展的</h1>
 <ul>
-<li>[(2i-1)^3 for i=1:5] の代わりに [1:2:9;].^3 としても同じ。
+<li><code>[(2i-1)^3 for i=1:5]</code> の代わりに <code>[1:2:9;].^3</code> としても同じ。
 <ul>
-<li>(start):(step):(end) で範囲を生成できる。; をつけると数列になる</li>
-<li><strong>ドット演算子</strong>：&quot;.&quot;で各要素に関数を作用させる。sin.([0.5pi,pi,1.5pi])</li>
+<li><code>(start):(step):(end)</code> で範囲を生成できる。<code>;</code> をつけると数列になる</li>
+<li><strong>ドット演算子</strong>：<code>.</code> で各要素に関数を作用させる。<code>sin.([0.5pi, pi, 1.5pi])</code></li>
 </ul>
 </li>
-<li>? でヘルプモードに移って &quot;|&gt;&quot; と入力してみよう
+<li>? でヘルプモードに移って <code>|&gt;</code> と入力してみよう
 <ul>
-<li><strong>ラムダ式</strong>：9p. の関数は f = (x, y) -&gt; x * y とも書ける</li>
-<li>|&gt;：変数に関数を次々と作用させる。</li>
+<li><strong>ラムダ式</strong>：9p. の関数は <code>f = (x, y) -&gt; x * y</code> とも書ける</li>
+<li><code>|&gt;</code>：変数に関数を次々と作用させる。</li>
 </ul>
 </li>
-<li><strong>do</strong>：無名関数を作って第1引数として渡す。map(1:2:9) do x; x^3; end</li>
-<li>ローカルスコープからグローバル変数に書き込むときは global をつける（スコープ内で1度）</li>
+<li><strong><code>do</code></strong>：無名関数を作って第1引数として渡す。<code>map(1:2:9) do x; x^3; end</code></li>
+<li>ローカルスコープからグローバル変数に書き込むときは <code>global</code> をつける（スコープ内で1度でOK）</li>
 </ul>
 <footer>Julia 入門</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-footer="Julia 入門" data-marpit-pagination="13" data-marpit-pagination-total="15" style="--paginate:true;--footer:Julia 入門;">
 <h1>グラフをプロット</h1>
 <ul>
-<li>&quot;]&quot; でパッケージモードに移って &quot;add Plots&quot; で Plots パッケージをインストール（数分かかる）</li>
+<li>] でパッケージモードに移って <code>add Plots</code> で Plots パッケージをインストール（数分かかる）</li>
 </ul>
 <footer>Julia 入門</footer>
 </section>
@@ -240,7 +253,7 @@ println(add(<span class="hljs-number">1</span>,<span class="hljs-number">2</span
 <footer>Julia 入門</footer>
 </section>
 <script>!function(){"use strict";const t="marpitSVGPolyfill:setZoomFactor,",e=Symbol();let r,o;function n(n){const i="object"==typeof n&&n.target||document,a="object"==typeof n?n.zoom:n;window[e]||(Object.defineProperty(window,e,{configurable:!0,value:!0}),window.addEventListener("message",(({data:e,origin:r})=>{if(r===window.origin)try{if(e&&"string"==typeof e&&e.startsWith(t)){const[,t]=e.split(","),r=Number.parseFloat(t);Number.isNaN(r)||(o=r)}}catch(t){console.error(t)}})));let l=!1;Array.from(i.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,n,i,s;t.style.transform||(t.style.transform="translateZ(0)");const c=a||o||t.currentScale||1;r!==c&&(r=c,l=c);const d=t.getBoundingClientRect(),{length:u}=t.children;for(let r=0;r<u;r+=1){const o=t.children[r],a=o.getScreenCTM();if(a){const t=null!==(n=null===(e=o.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==n?n:0,r=null!==(s=null===(i=o.y)||void 0===i?void 0:i.baseVal.value)&&void 0!==s?s:0,l=o.firstChild,{style:u}=l;u.transformOrigin||(u.transformOrigin=`${-t}px ${-r}px`),u.transform=`scale(${c}) matrix(${a.a}, ${a.b}, ${a.c}, ${a.d}, ${a.e-d.left}, ${a.f-d.top}) translateZ(0.0001px)`}}})),!1!==l&&Array.from(i.querySelectorAll("iframe"),(({contentWindow:e})=>{null==e||e.postMessage(`${t}${l}`,"null"===window.origin?"*":window.origin)}))}r=1,o=void 0;const i=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};function a({once:t=!1,target:e=document}={}){const r="Apple Computer, Inc."===navigator.vendor?[n]:[];let o=!t;const a=()=>{for(const t of r)t({target:e});!function(t=document){Array.from(t.querySelectorAll('svg[data-marp-fitting="svg"]'),(t=>{var e;const r=t.firstChild,o=r.firstChild,{scrollWidth:n,scrollHeight:a}=o;let l,s=1;if(t.hasAttribute("data-marp-fitting-code")&&(l=null===(e=t.parentElement)||void 0===e?void 0:e.parentElement),t.hasAttribute("data-marp-fitting-math")&&(l=t.parentElement),l){const t=getComputedStyle(l),e=Math.ceil(l.clientWidth-parseFloat(t.paddingLeft||"0")-parseFloat(t.paddingRight||"0"));e&&(s=e)}const c=Math.max(n,s),d=Math.max(a,1),u=`0 0 ${c} ${d}`;i(r,"width",`${c}`),i(r,"height",`${d}`),i(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),i(t,"viewBox",u)&&t.classList.toggle("__reflow__")}))}(e),o&&window.requestAnimationFrame(a)};return a(),()=>{o=!1}}const l=Symbol(),s=document.currentScript;((t=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(t[l])return t[l];const e=a({target:t}),r=()=>{e(),delete t[l]};Object.defineProperty(t,l,{configurable:!0,value:r})})(s?s.getRootNode():document)}();
-</script></foreignObject></svg></div><script>!function(){"use strict";var e=function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),s=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,(function(e){return"SCRIPT"!==e.nodeName})),a={},i=function(e,t){return(t=t||{}).index=s.indexOf(e),t.slide=e,t},o=function(e,t){a[e]=(a[e]||[]).filter((function(e){return e!==t}))},l=function(e,t){return(a[e]||[]).reduce((function(e,n){return e&&!1!==n(t)}),!0)},c=function(e,t){s[e]&&(n&&l("deactivate",i(n,t)),n=s[e],l("activate",i(n,t)))},d=function(e,t){var r=s.indexOf(n)+e;l(e>0?"next":"prev",i(n,t))&&c(r,t)},u={off:o,on:function(e,t){return(a[e]||(a[e]=[])).push(t),o.bind(null,e,t)},fire:l,slide:function(e,t){if(!arguments.length)return s.indexOf(n);l("slide",i(s[e],t))&&c(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:s,destroy:function(e){l("destroy",i(n,e)),a={}}};return(t||[]).forEach((function(e){e(u)})),n||c(0),u};function t(e){e.parent.classList.add("bespoke-marp-parent"),e.slides.forEach((e=>e.classList.add("bespoke-marp-slide"))),e.on("activate",(t=>{const n=t.slide,r=!n.classList.contains("bespoke-marp-active");e.slides.forEach((e=>{e.classList.remove("bespoke-marp-active"),e.setAttribute("aria-hidden","true")})),n.classList.add("bespoke-marp-active"),n.removeAttribute("aria-hidden"),r&&(n.classList.add("bespoke-marp-active-ready"),document.body.clientHeight,n.classList.remove("bespoke-marp-active-ready"))}))}function n(e){let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map((e=>[null,...e.querySelectorAll("[data-marpit-fragment]")]))});const r=r=>void 0!==e.fragments[t][n+r],s=(r,s)=>{t=r,n=s,e.fragments.forEach(((e,t)=>{e.forEach(((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=s;e.setAttribute("data-bespoke-marp-fragment",a?"active":"inactive"),t===r&&n===s?e.setAttribute("data-bespoke-marp-current-fragment","current"):e.removeAttribute("data-bespoke-marp-current-fragment")}))})),e.fragmentIndex=s;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:s};e.fire("fragment",a)};e.on("next",(({fragment:a=!0})=>{if(a){if(r(1))return s(t,n+1),!1;const a=t+1;e.fragments[a]&&s(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return s(t,r-1),!1;const a=e.fragments[t+1];a&&s(t+1,a.length-1)}})),e.on("prev",(({fragment:a=!0})=>{if(r(-1)&&a)return s(t,n-1),!1;const i=t-1;e.fragments[i]&&s(i,e.fragments[i].length-1)})),e.on("slide",(({index:t,fragment:n})=>{let r=0;if(void 0!==n){const s=e.fragments[t];if(s){const{length:e}=s;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}s(t,r)})),s(0,0)}
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="2" tabindex="0"><p>&lt;span style=&quot;color: gray&quot;&gt;*Read-Eval-Print Loop の略らしい*&lt;/span&gt;</p></div><script>!function(){"use strict";var e=function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),s=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,(function(e){return"SCRIPT"!==e.nodeName})),a={},i=function(e,t){return(t=t||{}).index=s.indexOf(e),t.slide=e,t},o=function(e,t){a[e]=(a[e]||[]).filter((function(e){return e!==t}))},l=function(e,t){return(a[e]||[]).reduce((function(e,n){return e&&!1!==n(t)}),!0)},c=function(e,t){s[e]&&(n&&l("deactivate",i(n,t)),n=s[e],l("activate",i(n,t)))},d=function(e,t){var r=s.indexOf(n)+e;l(e>0?"next":"prev",i(n,t))&&c(r,t)},u={off:o,on:function(e,t){return(a[e]||(a[e]=[])).push(t),o.bind(null,e,t)},fire:l,slide:function(e,t){if(!arguments.length)return s.indexOf(n);l("slide",i(s[e],t))&&c(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:s,destroy:function(e){l("destroy",i(n,e)),a={}}};return(t||[]).forEach((function(e){e(u)})),n||c(0),u};function t(e){e.parent.classList.add("bespoke-marp-parent"),e.slides.forEach((e=>e.classList.add("bespoke-marp-slide"))),e.on("activate",(t=>{const n=t.slide,r=!n.classList.contains("bespoke-marp-active");e.slides.forEach((e=>{e.classList.remove("bespoke-marp-active"),e.setAttribute("aria-hidden","true")})),n.classList.add("bespoke-marp-active"),n.removeAttribute("aria-hidden"),r&&(n.classList.add("bespoke-marp-active-ready"),document.body.clientHeight,n.classList.remove("bespoke-marp-active-ready"))}))}function n(e){let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map((e=>[null,...e.querySelectorAll("[data-marpit-fragment]")]))});const r=r=>void 0!==e.fragments[t][n+r],s=(r,s)=>{t=r,n=s,e.fragments.forEach(((e,t)=>{e.forEach(((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=s;e.setAttribute("data-bespoke-marp-fragment",a?"active":"inactive"),t===r&&n===s?e.setAttribute("data-bespoke-marp-current-fragment","current"):e.removeAttribute("data-bespoke-marp-current-fragment")}))})),e.fragmentIndex=s;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:s};e.fire("fragment",a)};e.on("next",(({fragment:a=!0})=>{if(a){if(r(1))return s(t,n+1),!1;const a=t+1;e.fragments[a]&&s(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return s(t,r-1),!1;const a=e.fragments[t+1];a&&s(t+1,a.length-1)}})),e.on("prev",(({fragment:a=!0})=>{if(r(-1)&&a)return s(t,n-1),!1;const i=t-1;e.fragments[i]&&s(i,e.fragments[i].length-1)})),e.on("slide",(({index:t,fragment:n})=>{let r=0;if(void 0!==n){const s=e.fragments[t];if(s){const{length:e}=s;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}s(t,r)})),s(0,0)}
 /*!
 * screenfull
 * v5.0.2 - 2020-02-13
