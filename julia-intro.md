@@ -26,37 +26,37 @@ marp: true
 - "exit()" か Ctrl+D で終了
 - "]" でパッケージモード
 - "?" でヘルプモード
-* BackSpace で Julia モードに戻る
-* パッケージの追加：
+- BackSpace で Julia モードに戻る
+- パッケージの追加：
   - (パッケージモード) add パッケージ名
   - (Julia モード) using Pkg <span style="color:gray">(import Pkg でもいい)</span>をした上で Pkg.add("パッケージ名") 
-* インストールしたパッケージの確認：Pkg.installed()
-* パッケージのアップデート：Pkg.update()
+- インストールしたパッケージの確認：Pkg.installed()
+- パッケージのアップデート：Pkg.update()
 
 ---
 # REPL as 電卓
-* 算術、論理、比較、ビット演算子は一般的なものとほぼ同じ
-* 累乗は "^"、整数除算は "÷"(\div+Tab)、XOR は "⊻"(\xor+Tab)
-* 1//7 は分数になる
-* "≠" "≤" "≥" も用意されている
-* 定数として "π""ℯ" が用意されている(\pi, \euler)（cf. Base.Mathconstants）
-* "\alpha""\Alpha" などと入力して Tab を押すと全角のギリシャ文字（α,Αなど）に置換される（π 以外は変数用）（TeX 記号は結構対応している）
-* <span style="color:gray">余談：LaTeX では \Alpha コマンドは用意されておらずアルファベットのAで代用せざるを得ないが Unicode では区別される。cf.[Unicode一覧 0000-0FFF](https://ja.wikipedia.org/wiki/Unicode%E4%B8%80%E8%A6%A7_0000-0FFF)</span>
-* ヘルプモードで記号を入力すると TeX での打ち方、演算子の場合は用例も分かる
+- 算術、論理、比較、ビット演算子は一般的なものとほぼ同じ
+- 累乗は "^"、整数除算は "÷"(\div+Tab)、XOR は "⊻"(\xor+Tab)
+- 1//7 は分数になる
+- "≠" "≤" "≥" も用意されている
+- 定数として "π""ℯ" が用意されている(\pi, \euler)（cf. Base.Mathconstants）
+- "\alpha""\Alpha" などと入力して Tab を押すと全角のギリシャ文字（α,Αなど）に置換される（π 以外は変数用）（TeX 記号は結構対応している）
+- <span style="color:gray">余談：LaTeX では \Alpha コマンドは用意されておらずアルファベットのAで代用せざるを得ないが Unicode では区別される。cf.[Unicode一覧 0000-0FFF](https://ja.wikipedia.org/wiki/Unicode%E4%B8%80%E8%A6%A7_0000-0FFF)</span>
+- ヘルプモードで記号を入力すると TeX での打ち方、演算子の場合は用例も分かる
 
 ---
 # データ型
-* typeof(1) などとしてデータ型を確認できる
-* 1.0, 1//7, π, 2.0im, true, 'a', '㌕', "ABC" の型を確認してみよう
-* 型変換関数はデータ型と同じ名前。Float64(pi * 2), BigFloat(ℯ)
+- typeof(1) などとしてデータ型を確認できる
+- 1.0, 1//7, π, 2.0im, true, 'a', '㌕', "ABC" の型を確認してみよう
+- 型変換関数はデータ型と同じ名前。Float64(pi * 2), BigFloat(ℯ)
 
 ---
 println() でコンソール出力
 # 文字列・配列
-* String は Char の配列
-* **アクセス**：最初の要素は [1] または [begin], 最後の要素は [end]
-* **配列のスライス**："hello"[2:4] とすると "ell" が切り出せる
-* **文字列の結合**：string("Java","script") とするか "インド" * "ネシア" とする
+- String は Char の配列
+- **アクセス**：最初の要素は [1] または [begin], 最後の要素は [end]
+- **配列のスライス**："hello"[2:4] とすると "ell" が切り出せる
+- **文字列の結合**：string("Java","script") とするか "インド" * "ネシア" とする
 string を使う方法なら文字列以外も文字列として結合できる
 * **文字列の置換**：replace("Word to vec", " to " => 2)
 * **配列の長さ**：length("four")
