@@ -5,7 +5,6 @@ marp: true
 
 ---
 <!-- paginate: true -->
-<!-- footer: Julia 入門 -->
 # Julia とは
 参考：[Julia in a Nutshell](https://julialang.org/), [なぜ僕らはJuliaを作ったか](https://www.geidai.ac.jp/~marui/julialang/why_we_created_julia/index.html)
 
@@ -14,7 +13,7 @@ LLVM を利用してネイティブコードを生成する（らしい）
 ### 簡単に書ける
 動的型付けのおかげで気軽に書ける。対話環境も充実。
 ### いろいろな構成に対応
-オブジェクト指向言語や関数型言語の書き方ができる
+多重ディスパッチでOOP（構造体に関数が作用する書き方）や関数型っぽく書ける
 ### そして[オープンソース](https://github.com/JuliaLang/julia)
 
 ---
@@ -38,14 +37,15 @@ LLVM を利用してネイティブコードを生成する（らしい）
 - パッケージの追加：
   - (パッケージモード) `add パッケージ名`
   - (julia モード) `using Pkg; Pkg.add("パッケージ名")` (import でも同じ)
-- インストールしたパッケージの確認：`Pkg.installed()`
+- インストールしたパッケージの確認：`Pkg.status()`
 - パッケージのアップデート：`Pkg.update()`
 
 ---
 # REPL を使いこなそう
 - 起動コマンドを `julia -q` とすると julia のアスキーアートが表示されない
 - **Tab 変換**：`\alpha`+Tab, `\Alpha`+Tab などと入力して `α`, `Α` などに置換される（`π` 以外はだいたい変数用）（TeX 記号は結構対応している）
-- <span style="color:gray">余談：LaTeX では \Alpha コマンドは用意されておらずアルファベットのAで代用せざるを得ないが Unicode では区別される。cf.[Unicode一覧 0000-0FFF](https://ja.wikipedia.org/wiki/Unicode%E4%B8%80%E8%A6%A7_0000-0FFF)</span>
+
+（余談：LaTeX では \Alpha コマンドは用意されておらずアルファベットのAで代用せざるを得ないが Unicode では区別される。cf.[Unicode一覧 0000-0FFF](https://ja.wikipedia.org/wiki/Unicode%E4%B8%80%E8%A6%A7_0000-0FFF)）
 - ヘルプモードで記号を入力すると TeX での打ち方、演算子の場合は用例も分かる
 - 定数 `π`, `ℯ` が用意されている(`\pi`, `\euler`+Tab)（cf. Base.Mathconstants）
 - 円周率は `pi` でも同じ扱い
@@ -81,10 +81,12 @@ LLVM を利用してネイティブコードを生成する（らしい）
 - String は Char の配列
 - **アクセス**：先頭 `[1]`,`[begin]`, 末尾 `[end]`, 真ん中（切り捨て）`[end÷2]`
 - **配列のスライス**：`"hello"[2:4]` とすると `"ell"` が切り出せる
-- **文字列の結合**：`string("Java","script")` とするか `"インド" * "ネシア"` とする
+- **文字列の結合**：`string("Java","script")` とするか `"インド" * "ネシア"` とする（`+`じゃないのは非可換だかららしい）
 `string` を使う方法なら文字列以外も文字列として結合できる
 - **文字列の置換**：`replace("Word to vec", " to " => 2)`
 - **配列の長さ**：`length("four")`
+- **コードの挿入**：`print("x=$(1+2)")`
+- `"""` で複数行にまたがる文字列を書ける
 
 ---
 # 関数
@@ -152,18 +154,55 @@ Dict(i => i ^ 3 for i = 1:10)
   - `|>`：変数に関数を次々と作用させる。
 - **`do`**：無名関数を作って第1引数として渡す。`map(1:2:9) do x; x^3; end`
 - ローカルスコープからグローバル変数に書き込むときは `global` をつける（スコープ内で1度でOK）
+- 演算子は上書きできる [Juliaでのユーザー定義演算子の種類](https://qiita.com/cometscome_phys/items/7514b1f4b59f2292674d)
 
 ---
 # グラフをプロット
 - ] でパッケージモードに移って `add Plots` で Plots パッケージをインストール（数分かかる）
+```julia
+x = -5.0:0.1:5.0 # -5から5まで0.1刻み
+f(x) = 1 ./ (1 .+ exp.(-x)) # xの各要素にシグモイド関数を作用させる
+y = f(x)
+
+using Plots
+plot(x, y)
+savefig("Sigmoid.png") # 画像保存
+```
+なぜか画像保存以外ではグラフを見られない（Jupyter なら可能）
+
+---
+# アニメーション
+```julia
+using Plots
+
+x = -5.0:0.1:5.0
+f(x,a) = 1 ./ (1 .+ exp.(-a.*x)) # a はゲイン
+
+anim = Animation()
+for a in 1.0:0.1:2.0
+  # plot でラベル、軸範囲なども設定できる
+  plt = plot(x, f(x, a), label = "gain:$a",
+    xlims = (-5,5), ylims = (0,1), xlabel = "x", ylabel = "f(x)")
+  frame(anim, plt)
+end
+gif(anim, "sigmoid_anim.gif", fps = 5)
+```
 
 ---
 # 行列演算
+- `using LinearAlgebra`
+- `A = [1 2;3 4]` で $A=\begin{pmatrix}1&2\\3&4\end{pmatrix}$
+- `A*B` で行列積、`A'`でエルミート共役、`A.*B` でアダマール積（成分ごとの積）
+- `B=copy(A)` でコピー（配列も同じ）
+- エルミート行列 $H$ に対して `λ,U=eigen(H)` で固有値たち $\lambda$ とユニタリ$U$が求まる
+- 行列からベクトルを切り出す：`u1 = U[:,1]`は列を切り出す（列も行も切り出すと列ベクトル）
+- 逆行列は `inv(A)`、行列式は `det(A)`、トレースは `tr(A)`、指数行列は `exp(A)`
 
 ---
 # さらに詳しく
 - [Julia 1.0 ドキュメント](https://mnru.github.io/julia-doc-ja-v1.0/index.html) 有志による一部日本語化ドキュメント。最新は 1.6.4 なので内容は古いかもしれないが、基本的な言語仕様は同じ？
 - [Julia 1.6 Documentation](https://docs.julialang.org/en/v1/) 困ったら公式。英語。
+- [Juliaで数値計算　その1：コードサンプル〜基本的計算編〜](https://qiita.com/cometscome_phys/items/31d0b811345a3e12fcef) 紹介しきれていない入門的な事項も書かれている。
 # 参考文献
 - [Julia言語プログラミング入門](http://itref.fc2web.com/lang/julia/)
 - [REPL (julia コマンド) の使い方](http://nalab.mind.meiji.ac.jp/~mk/labo/text/julia-memo/node6.html)
