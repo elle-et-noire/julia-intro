@@ -199,6 +199,34 @@ gif(anim, "sigmoid_anim.gif", fps = 5)
 - 逆行列は `inv(A)`、行列式は `det(A)`、トレースは `tr(A)`、指数行列は `exp(A)`
 
 ---
+# 素数
+- `add Primes`
+- `primes(2, 97)` で $2\sim 97$ の素数
+- `isprime()`：素数判定、`factor()`：素因数分解
+- [Prime number functions](https://juliamath.github.io/Primes.jl/stable/api/) 詳細。公式。
+
+---
+# フィッティング
+```julia
+using LsqFit, Plots
+xdata = [5:0.2:10.8;]
+ydata = [1.9, 2.2, 2.5, 2.1, 2.8, 2.9, 2.2, 2.6, 2.4, 3.6,
+         5.5, 9.2, 25, 110, 340, 550, 220, 51, 13, 5.4, 8.9,
+         5.7, 2.5, 5.1, 5.6, 3.2, 3.0, 2.5, 2.1, 1.8].*1e16
+function func(x, prm) # フィッティングのモデル
+  @. prm[1] * exp(-(x - prm[2]) ^ 2 / (2prm[3] ^ 2)) + prm[4]
+end
+parameter_initial = [1e18, 8, 3, 1e15] # 係数の初期値
+fit = curve_fit(func, xdata, ydata, parameter_initial)
+println("param->", fit.param, ", covar->", estimate_covar(fit),
+  ", stderr->", stderror(fit)) # 係数、共分散、標準偏差
+plot(xdata, ydata, seriestype = :scatter)
+plot!([5:0.02:10.8;], func([5:0.02:10.8;], fit.param))
+savefig("lsqfit-sample.png")
+```
+詳しく -> [LsqFit.jl](https://julianlsolvers.github.io/LsqFit.jl/latest/)
+
+---
 # さらに詳しく
 - [Julia 1.0 ドキュメント](https://mnru.github.io/julia-doc-ja-v1.0/index.html) 有志による一部日本語化ドキュメント。最新は 1.6.4 なので内容は古いかもしれないが、基本的な言語仕様は同じ？
 - [Julia 1.6 Documentation](https://docs.julialang.org/en/v1/) 困ったら公式。英語。
