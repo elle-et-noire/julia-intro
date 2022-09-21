@@ -1,6 +1,14 @@
 ---
 marp: true
+theme: default
+class: invert
 ---
+<style>
+section {
+  background:linear-gradient(to right, #4c8590, #734b85); 
+}
+</style>
+
 # Julia 入門
 
 ---
